@@ -84,7 +84,27 @@ bash
 git clone https://github.com/oskarsh/Yin-Yang.git
 cd Yin-Yang
 # Installs Yin-Yang
+# Note: On Arch-based systems, you may need to bypass the externally-managed-environment:
+# pip install --break-system-packages ./dist/*.whl (handled by the script)
 ./scripts/install.sh
+```
+
+### Systemd Service (KDE/CachyOS)
+
+If you are running on KDE Plasma (especially on Wayland), the background service might need extra environment variables to detect your desktop and run without a display. 
+
+Edit your user service file: `nano ~/.local/share/systemd/user/yin_yang.service`
+
+```ini
+[Service]
+Environment=XDG_CURRENT_DESKTOP=KDE
+Environment=QT_QPA_PLATFORM=offscreen
+```
+
+Then reload and restart:
+```bash
+systemctl --user daemon-reload
+systemctl --user restart yin_yang.timer
 ```
 
 For development, skip the installation and instead build python using Poetry. A virtual environment will be created for you:
