@@ -20,7 +20,7 @@ export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 poetry env use python
 poetry install --sync
 poetry build
-pip install ./dist/yin_yang-*-py3-none-any.whl
+pip install --break-system-packages ./dist/yin_yang-*-py3-none-any.whl
 
 echo "Installing yin yang"
 #check if /opt/ directory exists else create

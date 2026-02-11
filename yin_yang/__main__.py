@@ -88,7 +88,7 @@ if arguments.toggle:
     theme_switcher.set_mode(not config.dark_mode)
 
 elif arguments.systemd:
-    theme_switcher.set_desired_theme()
+    theme_switcher.set_desired_theme(True)
 
 
 else:

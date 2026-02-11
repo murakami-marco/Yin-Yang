@@ -1,6 +1,6 @@
 [project]
 name = "yin_yang"
-version = "4.0.0"
+version = "4.0.2"
 license = "MIT"
 description = "Auto Nightmode for KDE, Gnome, Budgie, VSCode, Atom and more."
 authors = [

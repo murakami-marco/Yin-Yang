@@ -20,12 +20,7 @@ from PySide6.QtCore import QStandardPaths
 logger = logging.getLogger(__name__)
 
 # aliases for path to use later on
-config_path = pathlib.Path(QStandardPaths.writableLocation(QStandardPaths.ConfigLocation))
-if __debug__:
-    config_path = config_path / 'yin_yang.json'
-else:
-    config_path = config_path / 'yin_yang_dev.json'
-
+config_path = pathlib.Path(QStandardPaths.writableLocation(QStandardPaths.ConfigLocation)) / 'yin_yang.json'
 
 def update_config(config_old: dict, defaults: dict):
     """Update old config files
@@ -333,7 +328,7 @@ class ConfigManager(dict):
 
         # NOTE: if you change or add new values here, make sure to update the version number and update_config() method
         conf_default = {
-            'version': 4.0,
+            'version': 4.02,
             'running': False,
             'dark_mode': False,
             'mode': Modes.MANUAL.value,

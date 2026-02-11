@@ -25,5 +25,7 @@ class OnlyOffice(ConfigFilePlugin):
             'theme-light': 'Light',
             'theme-classic-light': 'Classic light',
             'theme-dark': 'Dark',
-            'theme-contrast-dark': 'Dark contrast'
+            'theme-contrast-dark': 'Dark contrast',
+            'theme-white': 'Modern Light',
+            'theme-night': 'Modern Dark'
         }
