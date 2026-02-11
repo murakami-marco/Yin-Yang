@@ -93,15 +93,25 @@ cd Yin-Yang
 
 If you are running on KDE Plasma (especially on Wayland), the background service might need extra environment variables to detect your desktop and run without a display. 
 
-Edit your user service file: `nano ~/.local/share/systemd/user/yin_yang.service`
+1. **Service Configuration**: Edit your user service file `~/.local/share/systemd/user/yin_yang.service`:
 
 ```ini
 [Service]
+ExecStart=/usr/bin/yin_yang --systemd
 Environment=XDG_CURRENT_DESKTOP=KDE
 Environment=QT_QPA_PLATFORM=offscreen
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+```
+*(Note: Replace 1000 with your UID, find it with `id -u`)*
+
+2. **Boot Synchronization**: If the theme doesn't change on login, increase the startup delay in `~/.local/share/systemd/user/yin_yang.timer`:
+
+```ini
+[Timer]
+OnStartupSec=60
 ```
 
-Then reload and restart:
+3. **Reload and Restart**:
 ```bash
 systemctl --user daemon-reload
 systemctl --user restart yin_yang.timer

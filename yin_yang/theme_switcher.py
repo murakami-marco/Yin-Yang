@@ -37,6 +37,8 @@ def set_mode(dark: bool, force=False):
         return
 
     logger.info(f'Switching to {"dark" if dark else "light"} mode.')
+
+    threads = [] # 1. Create a list to track your threads
     for p in plugins:
         if config.get_plugin_key(p.name, PluginKey.ENABLED):
             if force and isinstance(p, Notification):
@@ -46,8 +48,13 @@ def set_mode(dark: bool, force=False):
                 logger.info(f'Changing theme in plugin {p.name}')
                 p_thread = Thread(target=p.set_mode, args=[dark], name=p.name)
                 p_thread.start()
+                threads.append(p_thread) # 2. Add the thread to the list
             except Exception as e:
                 logger.error('Error while changing theme in ' + p.name, exc_info=e)
+
+    # 3. Wait for all threads to finish before exiting the function
+    for t in threads:
+        t.join()
 
     config.dark_mode = dark
 

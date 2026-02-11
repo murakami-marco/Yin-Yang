@@ -52,7 +52,7 @@ def setup_logger(use_systemd_journal: bool):
         # let the default logger print to the console
         # noinspection SpellCheckingInspection
         logging.basicConfig(
-            level=logging.WARNING,
+            level=logging.INFO,
             format='%(asctime)s %(levelname)s - %(name)s: %(message)s'
         )
         # and add a handler that limits the size to 1 GB

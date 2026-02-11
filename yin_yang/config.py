@@ -32,8 +32,9 @@ def update_config(config_old: dict, defaults: dict):
 
     logger.debug('Attempt to update the config file')
 
-    # replace current config with defaults
-    config_new = defaults
+    # preserve current config but merge with defaults for new keys
+    config_new = defaults.copy()
+    config_new.update(config_old)
 
     # replace default values with previous ones
     if config_old['version'] <= 2.1:
